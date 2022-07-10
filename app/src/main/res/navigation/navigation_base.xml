@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_base"
+    app:startDestination="@id/nav1">
+
+    <navigation
+        android:id="@+id/nav1"
+        app:startDestination="@id/signFragment">
+        <action
+            android:id="@+id/navigation_sign_to_navigation_chat"
+            app:destination="@id/nav2"/>
+        <fragment
+            android:id="@+id/signFragment"
+            android:name="com.example.chatappkotlin.SignFragment"
+            android:label="fragment_sign"
+            tools:layout="@layout/fragment_sign">
+        </fragment>
+    </navigation>
+
+    <navigation
+        android:id="@+id/nav2"
+        app:startDestination="@id/chatFragment">
+
+        <fragment
+            android:id="@+id/chatFragment"
+            android:name="com.example.chatappkotlin.ChatFragment"
+            android:label="fragment_chat"
+            tools:layout="@layout/fragment_chat" >
+            <action
+                android:id="@+id/navigation_chat_to_sign_fragment"
+                app:destination="@id/signFragment"/>
+        </fragment>
+    </navigation>
+
+</navigation>
