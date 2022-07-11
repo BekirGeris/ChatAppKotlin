@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/activity_chat.xml" value="0.17604166666666668" />
-        <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/activity_main2.xml" value="0.3546875" />
         <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/fragment_chat.xml" value="0.3546875" />
         <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/layout/fragment_sign.xml" value="0.340625" />
+        <entry key="..\:/Users/bekir.geris/AndroidStudioProjects/ChatAppKotlin/app/src/main/res/menu/menu.xml" value="0.175" />
       </map>
     </option>
   </component>

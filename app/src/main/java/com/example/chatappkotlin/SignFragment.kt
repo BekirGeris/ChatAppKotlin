@@ -30,10 +30,11 @@ class SignFragment : Fragment(), View.OnClickListener{
     ): View? {
         binding = FragmentSignBinding.inflate(layoutInflater)
 
-        init()
         auth = FirebaseAuth.getInstance()
         binding.signUpBtn.setOnClickListener(this)
         binding.signInBtn.setOnClickListener(this)
+
+        init()
         return binding.root
     }
 

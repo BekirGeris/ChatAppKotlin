@@ -29,10 +29,18 @@
             android:name="com.example.chatappkotlin.ChatFragment"
             android:label="fragment_chat"
             tools:layout="@layout/fragment_chat" >
-            <action
-                android:id="@+id/navigation_chat_to_sign_fragment"
-                app:destination="@id/signFragment"/>
         </fragment>
+        <action
+            android:id="@+id/action_global_nav1"
+            app:destination="@id/nav1" />
+        <action
+            android:id="@+id/action_global_profileFragment"
+            app:destination="@id/profileFragment" />
     </navigation>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.chatappkotlin.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>
