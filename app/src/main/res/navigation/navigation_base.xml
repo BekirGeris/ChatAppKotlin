@@ -14,7 +14,7 @@
             app:destination="@id/nav2"/>
         <fragment
             android:id="@+id/signFragment"
-            android:name="com.example.chatappkotlin.SignFragment"
+            android:name="com.example.chatappkotlin.view.fragment.SignFragment"
             android:label="fragment_sign"
             tools:layout="@layout/fragment_sign">
         </fragment>
@@ -26,7 +26,7 @@
 
         <fragment
             android:id="@+id/chatFragment"
-            android:name="com.example.chatappkotlin.ChatFragment"
+            android:name="com.example.chatappkotlin.view.fragment.ChatFragment"
             android:label="fragment_chat"
             tools:layout="@layout/fragment_chat" >
         </fragment>
@@ -39,7 +39,7 @@
     </navigation>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.chatappkotlin.ProfileFragment"
+        android:name="com.example.chatappkotlin.view.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 

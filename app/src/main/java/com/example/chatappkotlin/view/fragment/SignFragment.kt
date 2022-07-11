@@ -1,4 +1,4 @@
-package com.example.chatappkotlin
+package com.example.chatappkotlin.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

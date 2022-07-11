@@ -1,10 +1,12 @@
-package com.example.chatappkotlin
+package com.example.chatappkotlin.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.findNavController
+import com.example.chatappkotlin.R
+import com.example.chatappkotlin.view.fragment.ChatFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 
 class MainAcivity : AppCompatActivity() {
