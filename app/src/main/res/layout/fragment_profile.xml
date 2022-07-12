@@ -10,12 +10,13 @@
 
     <ImageView
         android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
         tools:src="@tools:sample/avatars" />
 
     <EditText
@@ -31,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
