@@ -68,6 +68,7 @@ class ChatFragment : Fragment() {
     }
 
     fun getData() {
+
         val newReference = database.getReference("chats")
 
         val query: Query = newReference.orderByChild("time")

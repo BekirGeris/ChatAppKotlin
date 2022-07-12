@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.example.chatappkotlin.BuildConfig
 import com.example.chatappkotlin.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -139,7 +140,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
     private fun getData() {
         val newReference = database.getReference("profiles")
-
         newReference.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (s in snapshot.children) {

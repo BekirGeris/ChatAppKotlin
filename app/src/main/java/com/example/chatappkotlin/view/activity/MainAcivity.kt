@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.findNavController
+import com.example.chatappkotlin.BuildConfig
 import com.example.chatappkotlin.R
 import com.example.chatappkotlin.view.fragment.ChatFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
+import com.onesignal.OneSignal
 
 class MainAcivity : AppCompatActivity() {
 
@@ -18,6 +20,13 @@ class MainAcivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         auth = FirebaseAuth.getInstance()
+
+        // Enable verbose OneSignal logging to debug issues if needed.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(BuildConfig.oneSignalAppId);
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
