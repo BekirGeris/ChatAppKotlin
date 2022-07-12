@@ -21,6 +21,7 @@
 
     <EditText
         android:id="@+id/textView"
+        android:inputType="text"
         android:hint="Enter Name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
