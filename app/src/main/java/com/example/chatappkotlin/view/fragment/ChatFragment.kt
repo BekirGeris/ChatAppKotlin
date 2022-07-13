@@ -1,21 +1,22 @@
 package com.example.chatappkotlin.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.text.set
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatappkotlin.databinding.FragmentChatBinding
 import com.example.chatappkotlin.view.adapter.ChatAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.onesignal.OneSignal
+import org.json.JSONException
+import org.json.JSONObject
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+
 
 class ChatFragment : Fragment() {
 
@@ -29,6 +30,9 @@ class ChatFragment : Fragment() {
 
     lateinit var user: FirebaseUser
 
+    val usersOneSignalInfo: ArrayList<HashMap<String, String>> = ArrayList()
+    val usersOneSignalJustIdList: ArrayList<String> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,8 @@ class ChatFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         databaseReferance = database.reference
         user = auth.currentUser!!
+
+        saveOneSignalId()
     }
 
     override fun onCreateView(
@@ -65,6 +71,12 @@ class ChatFragment : Fragment() {
 
         binding.messageEditText.text.clear()
         getData()
+
+        try {
+            OneSignal.postNotification(JSONObject("{'contents': {'en':'$message'}, 'include_player_ids': $usersOneSignalJustIdList}"),null)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
     }
 
     fun getData() {
@@ -86,6 +98,40 @@ class ChatFragment : Fragment() {
                     }
 
                     adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, error.message, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun saveOneSignalId() {
+        val deviceState = OneSignal.getDeviceState()
+        val userId = deviceState?.userId
+
+        val newReference = database.getReference("UserIds")
+        newReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var flag = true
+
+                for (s in snapshot.children) {
+                    val hashMap: HashMap<String, String> = s.getValue() as HashMap<String, String>
+                    usersOneSignalInfo.add(hashMap)
+                    if (hashMap.get("userNotifikationId").equals(userId)) {
+                        flag = false
+                    } else {
+                        usersOneSignalJustIdList.add(hashMap.get("userNotifikationId").toString())
+                    }
+                }
+
+                if (flag && userId != null) {
+                    val uuid = UUID.randomUUID().toString()
+                    databaseReferance.child("UserIds").child(uuid).child("userNotifikationId")
+                        .setValue(userId)
+                    databaseReferance.child("UserIds").child(uuid).child("useremail")
+                        .setValue(auth!!.currentUser!!.email.toString())
                 }
             }
 
