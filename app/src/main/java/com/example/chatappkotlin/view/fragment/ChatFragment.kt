@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.chatappkotlin.Message
 import com.example.chatappkotlin.databinding.FragmentChatBinding
 import com.example.chatappkotlin.view.adapter.ChatAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -22,7 +24,7 @@ class ChatFragment : Fragment() {
 
     lateinit var binding: FragmentChatBinding
     lateinit var adapter: ChatAdapter
-    val list = ArrayList<String>()
+    val list = ArrayList<Message>()
 
     lateinit var auth: FirebaseAuth
     lateinit var database: FirebaseDatabase
@@ -56,7 +58,7 @@ class ChatFragment : Fragment() {
 
         getData()
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
         binding.recyclerView.adapter = adapter
 
         return binding.root
@@ -94,11 +96,15 @@ class ChatFragment : Fragment() {
                     val userMessage: String? = hashMap.get("usermessage")
 
                     if (userEmail != null) {
-                        list.add(userEmail.split("@").get(0) + ": " + userMessage)
+                        if (user.email.toString().equals(userEmail)) {
+                            list.add(Message("$userMessage :${userEmail.split("@").get(0)}", true))
+                        } else {
+                            list.add(Message(userEmail.split("@").get(0) + ": " + userMessage, false))
+                        }
                     }
-
-                    adapter.notifyDataSetChanged()
                 }
+                list.reverse()
+                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
